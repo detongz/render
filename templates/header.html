@@ -1,0 +1,38 @@
+<header style="background-color: #f7f7f7;">
+    <div class="logo">
+        <a href="/"><img src="/static/images/logo.png" title="3D Render" id='logo' alt="3DRender" style="max-width:200px; margin-top: -10px;"/></a>
+        <script>
+            $(window).load(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('#logo').css('height','50px');
+                }
+
+            });
+            $(window).resize(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('#logo').css('height','50px');
+                }
+                else{
+                    $('#logo').css('height','110px');
+                }
+            });
+        </script>
+    </div>
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            <li><a href="/" id="index">首页</a></li>
+            <li><a href="/login" id="login">登录|注册</a></li>
+            <li><a href="#" id="intro">作品介绍</a></li>
+            <li><a href="#" id="ourteam">Team Firmiana</a></li>
+        </ul>
+    </nav>
+
+    <div class="footer clearfix">
+        <div class="rights">
+            <p>3D Render</p>
+            <p>参赛团队<a href="">Firmiana</a></p>
+        </div>
+    </div >
+</header>
