@@ -1,7 +1,6 @@
 # coding:utf-8
 
 import torndb
-import re
 
 db = torndb.Connection('localhost', 'courseDesign', 'root')
 
@@ -19,6 +18,11 @@ def setUserImage(id, fname):
 def setUserDescription(id, description):
     sql = '''update user set description='%s' where id='%s';''' % (description, id)
     db.execute(sql)
+
+
+def login(id, pwd):
+    sql = '''select * from user where id="%s" and password="%s";''' % (id, pwd)
+    return db.query(sql)[0]
 
 
 if __name__ == "__main__":
