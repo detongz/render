@@ -2,11 +2,9 @@
 import tornado.web
 from handler.index import indexHandler, userIndexHandler
 from handler.login import signupHandler, loginHandler
-from handler.error import errorHandler
-from handler.request import Request
+from handler.error import errorHandler, errorHandler404
 
 urls = [
-    (r'.*',Request),
     (r'/', indexHandler),  # 首页/查看全部作品
     (r'/login', loginHandler),  # 登陆界面
     (r'/signup', signupHandler),  # 申请新用户界面
@@ -15,4 +13,5 @@ urls = [
     (r'/error/(.*)/(.*)', errorHandler),  # 各类报错信息
     (r'/error/404', errorHandler),
     (r'/error/', errorHandler),
+    (r".*", errorHandler404),
 ]
