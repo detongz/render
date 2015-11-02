@@ -23,7 +23,12 @@
     <nav>
         <ul>
             <li><a href="/" id="index">首页</a></li>
+            {% if not uid %}
             <li><a href="/login" id="login">登录|注册</a></li>
+            {% else %}
+            <li><a href="/user/{{ uid }}" id="user">个人主页</a></li>
+            <li><a href="/logout">注销用户</a></li>
+            {% end %}
             <li><a href="#" id="intro">作品介绍</a></li>
             <li><a href="#" id="ourteam">Team Firmiana</a></li>
         </ul>

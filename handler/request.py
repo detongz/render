@@ -3,5 +3,7 @@ import tornado.web
 
 
 class Request(tornado.web.RequestHandler):
-    """这个类并没有什么用"""
-    pass
+    """基类"""
+
+    def __init__(self, application, request, **kwargs):
+        super(Request, self).__init__(application, request, **kwargs)

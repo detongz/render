@@ -2,7 +2,7 @@
 
 import torndb
 
-db = torndb.Connection('localhost', 'courseDesign', 'root')
+db = torndb.Connection('localhost', 'renderServer', 'root')
 
 
 def signup(id, password, email):
@@ -20,10 +20,16 @@ def setUserDescription(id, description):
     db.execute(sql)
 
 
-def login(id, pwd):
+def getUser(id, pwd):
     sql = '''select * from user where id="%s" and password="%s";''' % (id, pwd)
-    return db.query(sql)[0]
+    r=db.query(sql)
+    if not r:
+        return None
+    else:
+        return r[0]
 
 
 if __name__ == "__main__":
-    pass
+    id=raw_input()
+    pwd=raw_input()
+    print getUser(id,pwd)

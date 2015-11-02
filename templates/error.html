@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/main.js"></script>
     <script>
+        {% autoescape None %}
         $(document).ready(function(){
             $('#{{ selecting }}').attr('class','selected');{# header部分需要标记为选择的部分 #}
         });

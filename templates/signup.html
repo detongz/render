@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>注册 - 3DRender</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script type="text/javascript" src="/static/js/signup.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#login').attr('class','selected');
+            $(window).load(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('input').css('width','100%');
+                    $('.pure-button').css('width','100%');
+                }
+                else{
+                    $('input').css('width','67%');
+                    $('.pure-button').css('width','67%');
+                }
+            });
+            $(window).resize(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('input').css('width','100%');
+                    $('.pure-button').css('width','100%');
+                }
+                else{$('input').css('width','67%');
+                    $('.pure-button').css('width','67%');
+                }
+            });
+        })
+    </script>
+    <style>
+        aside {
+            height: 23px;
+        }
+    </style>
+</head>
+<body>
+
+	{% include header.html %}
+
+	<section class="main clearfix">
+
+		<section class="top">
+			<div class="wrapper content_header clearfix">
+				<h1 class="title">新用户注册<label style="float: right;margin-left: 20px;">Sign Up</label></h1>
+			</div>		
+		</section><!-- end top -->
+
+		<section class="wrapper">
+			<div class="content form-signin">
+                <div class="pure-form pure-form-stacked">
+                    <label for="name">昵称</label>
+                    <input type="text" id="name" placeholder="请输入昵称" autofocus>
+                    <label for="password" style="margin-top: 1em;">登陆密码</label>
+                    <input type="password" id="password" placeholder="请输入密码" >
+                    <label for="cpassword" style="margin-top: 1em;">确认密码</label>
+                    <input type="password" id="cpassword" placeholder="请再次输入密码" >
+                    <label for="email" style="margin-top: 1em;">用户邮箱</label>
+                    <input type="email" id="email" placeholder="请输入邮箱哦" >
+                    <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
+                        <button class="pure-button pure-button-primary" style="background: rgb(66, 184, 221);" id="submiting">注册</button>
+                    </div>
+                </div>
+			</div><!-- end content -->
+		</section>
+	</section><!-- end main -->
+	
+</body>
+</html>
