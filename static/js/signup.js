@@ -43,10 +43,10 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     if(data.result=='success'){
-                        $('.form-signin').html('<div style="height:50px;color:#ADFF2F;"><p>(●\'◡\'●)ﾉ♥&nbsp;&nbsp;新用户注册成功,请登录吧!&nbsp;&nbsp;(●\'◡\'●)ﾉ♥</p></div>');
+                        $('.form-signin').html('<div style="height:50px;color:#ADFF2F;"><p>(●\'◡\'●)ﾉ♥&nbsp;&nbsp;注册成功啦,请登录吧!&nbsp;&nbsp;(●\'◡\'●)ﾉ♥</p></div>');
                     }
                     else{
-                        window.location.href='/error/'+data.result+'/';
+                        window.location.href='/error/'+data.result+'/login';
                     }
                 }
             })

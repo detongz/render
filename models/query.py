@@ -21,15 +21,32 @@ def setUserDescription(id, description):
 
 
 def getUser(id, pwd):
+    # 用户登录
     sql = '''select * from user where id="%s" and password="%s";''' % (id, pwd)
-    r=db.query(sql)
+    r = db.query(sql)
     if not r:
         return None
     else:
         return r[0]
 
 
+def getUserById(id):
+    # 用户名是否已经存在
+    sql = '''select * from user where id="%s";''' % (id)
+    r = db.query(sql)
+    if not r:
+        return None
+    else:
+        return r[0]
+
+
+def signUp(id, pwd, email):
+    # 新用户注册
+    sql = '''insert into user (id,password,email) values ('%s','%s','%s');''' % (id, pwd, email)
+    db.execute(sql)
+
+
 if __name__ == "__main__":
-    id=raw_input()
-    pwd=raw_input()
-    print getUser(id,pwd)
+    id = raw_input()
+    pwd = raw_input()
+    print getUser(id, pwd)
