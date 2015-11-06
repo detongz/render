@@ -1,8 +1,11 @@
 # coding:utf-8
 
+
 import torndb
 
 db = torndb.Connection('localhost', 'renderServer', 'root')
+
+"""针对用户进行操作的部分"""
 
 
 def signup(id, password, email):
