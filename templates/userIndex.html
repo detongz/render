@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>{{ user['id'] }}的主页 - 3DRender</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/pure.min.css">
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#user').attr('class','selected');
+            $(window).load(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('input').css('width','100%');
+                    $('.pure-button').css('width','100%');
+                    $('.splash-container').css('margin-left','0');
+                    $('#intro').css('width',$('.content').css('width'));
+                }
+                else{
+                    $('input').css('width','67%');
+                    $('.pure-button').css('width','67%');
+                    $('.splash-container').css('margin-left','100px');
+                    $('#intro').css('width',$('.content').css('width'));
+                }
+            });
+            $(window).resize(function(){
+                if($('#menu_icon').css('display')=='block'){
+                    $('input').css('width','100%');
+                    $('.pure-button').css('width','100%');
+                    $('.splash-container').css('margin-left','0');
+                    $('#intro').css('width',$('.content').css('width'));
+                }
+                else{
+                    $('input').css('width','67%');
+                    $('.pure-button').css('width','67%');
+                    $('.splash-container').css('margin-left','100px');
+                    $('#intro').css('width',$('.content').css('width'));
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+
+	{% include header.html %}
+
+	<section class="main clearfix">
+
+		<section class="content">
+{#            <div class="wrapper">#}
+{#                <div class="splash-container">#}
+{#                    <div class="splash">#}
+{#                        <div class="splash-head"><img src="{{ user['image'] }}" style="width: 100px;border-radius: 5px; border: 3px solid #d9edf7;"></div>#}
+{#                        <p class="splash-subhead"><h4>{{ user['id'] }}</h4></p>#}
+{#                        <p class="splash-subhead">{% if  user['description'] is not None %}{{ user['description'] }}{% else %}<br>{% end %}</p>#}
+{#                        <p class="splash-subhead"><a href="/share" class="pure-button pure-button-primary">分享模型</a></p>#}
+{#                        <div class="pure-g">#}
+{#                            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">asdfasdf</div>#}
+{#                            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">aaaaaaaaaaaaaaaaaaaaaa</div>#}
+{#                            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">aaaaaaaaaaaaaaaaaaaaaaaaaa</div>#}
+{#                            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">aaaaa</div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div><!-- end content -->#}
+{#            </div>#}
+            <div class="wrapper form-signin" style="width: 100px;">
+                <img src="{{ user['image'] }}" style="width: 100px;border-radius: 5px; border: 3px solid #FFFACD;">
+                <h4 style="text-align: center;margin-top: 20px;">{{ user['id'] }}</h4></p>
+            </div>
+            <div id="intro" style="margin:-60px 40px;">
+                <p style="text-align: center;">啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方啊多少发生的发生地方{% if  user['description'] is not None %}{{ user['description'] }}{% else %}<br>{% end %}</p>
+                <div class="pure-g">
+                        <div class="pure-u-1-4" style="font-weight: bold;font-size: 12px; color:#008B8B;">
+                            <label style="float: right;margin-right: 10px;">我的电子邮箱</label><br><br>
+                            <label style="float: right;margin-right: 10px;">已经分享的模型数目</label>
+                        </div>
+                        <div class="pure-u-1-4">
+                            <span>{{ user['email'] }}</span><br><br>
+                            <span>0</span>
+                        </div>
+                    <div class="pure-u-1-2">
+                        <a href="/share" class="pure-button pure-button-primary">分享模型</a>
+                        <a href="/changeprofile" class="pure-button pure-button-primary" style="background: #FFC125;margin-top: 10px;">修改我的资料</a>
+                    </div>
+                </div>
+            </div>
+		</section>
+	</section><!-- end main -->
+	
+</body>
+</html>

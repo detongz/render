@@ -22,14 +22,13 @@
     <div id="menu_icon"></div>
     <nav>
         <ul>
-            <li><a href="/" id="index">首页</a></li>
             {% if not uid %}
             <li><a href="/login" id="login">登录|注册</a></li>
             {% else %}
-            <li><a href="/user/{{ uid }}" id="user">个人主页</a></li>
-            <li><a href="/logout">注销用户</a></li>
+            <li><a href="/user" id="user">个人主页</a></li>
             {% end %}
-            <li><a href="#" id="intro">作品介绍</a></li>
+            <li><a href="#" id="share">分享模型</a></li>
+            <li><a href="#" id="intro">About 3DRender</a></li>
             <li><a href="#" id="ourteam">Team Firmiana</a></li>
         </ul>
     </nav>
@@ -38,6 +37,7 @@
         <div class="rights">
             <p>3D Render</p>
             <p>参赛团队<a href="">Firmiana</a></p>
+            {% if uid is not None %}<a href="/logout"><br><p style="font-weight: lighter;">退出登陆</p></a>{% end %}
         </div>
     </div >
 </header>

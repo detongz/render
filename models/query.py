@@ -32,6 +32,7 @@ def getUser(id, pwd):
 
 def getUserById(id):
     # 用户名是否已经存在
+    # 获取某用户所有信息
     sql = '''select * from user where id="%s";''' % (id)
     r = db.query(sql)
     if not r:

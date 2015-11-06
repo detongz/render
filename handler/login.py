@@ -30,7 +30,6 @@ class loginHandler(Request):
                     result['result'] = 'no_such_user'
                 else:
                     self.set_secure_cookie('id', uid)
-                    print uid
                     result['result'] = 'success'
             except TypeError:
                 result['result'] = 'login_pwd',
@@ -41,6 +40,8 @@ class loginHandler(Request):
 
 
 class logOutHandler(Request):
+    """退出登陆"""
+
     def get(self, *args, **kwargs):
         self.clear_cookie('id')
         self.redirect('/')
@@ -78,3 +79,10 @@ class signupHandler(Request):
             result['result'] = 'special_marks'
 
         self.write(json_encode(result))
+
+
+class changePersonalProfileHandler(Request):
+    """用户修改个人信息"""
+
+    def get(self, *args, **kwargs):
+        pass
