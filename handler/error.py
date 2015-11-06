@@ -10,7 +10,7 @@ error_info = {
     'user_existed': '这个昵称已经被注册过了(⊙o⊙)',
     'email_existed': '这个邮箱已经被注册过了(⊙o⊙)',
     'plsease_login': '要登陆才可以用的哦(●\'◡\'●)ﾉ♥',
-    'file_error': '文件上传出问题啦，再试试吧(￣▽￣)~\*'
+    'file_error': '分享出问题啦 再试试吧(￣▽￣)~\*'
 }
 
 

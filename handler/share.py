@@ -1,8 +1,14 @@
 #!coding:utf-8
 # /usr/bin/python
-import os, datetime, random
+import os
+import datetime
+import random
+
+from tornado.escape import json_encode
 from handler.request import Request
 from models.files import generatingfid
+from models.query import getUserById
+
 
 class shareHandler(Request):
     """模型分享 网页端"""
@@ -20,21 +26,26 @@ class shareHandler(Request):
             # 从form表单中读取数据
             f = self.request.files['sharefile'][0].body
             fname = self.request.files['sharefile'][0].filename
-            naming = self.get_argument('naming')
-            description = self.get_argument('description')
+            id = self.get_argument('id')
+
+            if not getUserById(id):
+                self.redirect('/error/no_such_user/share')
+
+            # 保存文件
             path = os.path.dirname(__file__)[:-8] + '/share/'
-            fpath=path + fname
+            fpath = path + fname
             fi = open(fpath, 'w')
             fi.write(f)
             fi.close()
 
+            fid = generateFId()  # 生成模型id
             # 解压并处理文件
-
+            (naming, descriptionun) = unzip(path, fname, fid)
 
             self.redirect('/')
+            self.write(json_encode({'result': 'success'}))
         except Exception as e:
             print e
-            self.redirect('/error/file_error/share')
 
 
 def generateFId():
@@ -50,5 +61,25 @@ def generateFId():
             break
     return id
 
-def unzip(filepath):
-    pass
+
+def unzip(path, fname, id):
+    cmd = '''cd %s
+            mkdir temp-%s
+            unzip %s -d temp-%s
+            rm %s
+            mv temp-%s/*.png %s.png
+            mv temp-%s/*.unimax %s.unimax
+            ''' \
+          % (path, id, fname, id, fname, id, id, id, id)
+    os.system(cmd)
+    f = open(path + '/temp-' + id + '/' + fname.split('.')[0] + '.txt')
+    line = f.readline()
+    line = line.split('|')
+    cmd = '''rm -rf %s/temp-%s''' % (path, id)
+    os.system(cmd)
+    return line[0], line[1]
+
+
+def removeShared(path, id):
+    cmd = '''rm %s/%s.*''' % (path, id)
+    os.system(cmd)

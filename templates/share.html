@@ -17,24 +17,20 @@
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
                     $('.pure-button').css('width','100%');
-                    $('textarea').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
                     $('.pure-button').css('width','30%');
-                    $('textarea').css('width','100%');
                 }
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
                     $('.pure-button').css('width','100%');
-                    $('textarea').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
                     $('.pure-button').css('width','30%');
-                    $('textarea').css('width','100%');
                 }
             });
 
@@ -65,16 +61,13 @@
 		</section><!-- end top -->
 
 		<section class="wrapper">
-			<div class="content form-signin" style="max-width: 5000px;">
+			<div class="content form-signin" style="margin-top:40px;max-width: 5000px;">
                 <div class="pure-form pure-form-stacked">
                     <form action="" enctype="multipart/form-data" method="post">
                         <label for="file">选择要分享的模型～</label>
                         <input type="file" name="sharefile" id="file" style="opacity: 0;z-index: 1;width: 100%;" hidden required/>
-                        <button class="pure-button pure-button-primary" style="z-index:-1; background: #FFCC22;" id="choosefile">请选择导出过的模型文件</button>
-                        <label for="naming" style="margin-top: 1em;">请为模型起个名字吧！</label>
-                        <input type="text" name="naming" id="naming" placeholder="写下你的模型的名字吧&nbsp;&nbsp;(′・ω・`) ">
-                        <label for="discription" style="margin-top: 1em;">请为模型写介绍吧～</label>
-                        <textarea type="text" name="description" id="description" placeholder="描述一下你的模型吧&nbsp;&nbsp;(O ^ ~ ^ O) " rows="10" style="resize:none;"></textarea>
+                        <button class="pure-button pure-button-primary" style="z-index:-1; background: #FFCC22;" id="choosefile">请选择导出过的模型文件(′・ω・`)</button>
+                        <input type="text" name="id" hidden value="{{ uid }}">
                         <input type="submit" id="submit" style="display: none;">
                         <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
                             <button class="pure-button pure-button-primary" style="background: rgb(66, 184, 221);" id="submiting">确认分享</button>
