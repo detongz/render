@@ -14,7 +14,8 @@ urls = [
     (r'/share', shareHandler),  # 用户模型分享
     (r'/changeprofile', changePersonalProfileHandler),  # 用户模型分享
     # 处理错误
-    (r'/error/(.*)/(.*)', errorHandler),  # 各类报错信息
+    (r'/error/(.*)/(.*)', errorHandler),  # 各类报错信息， 参数2为需要标记选择的部分
+    (r'/error/(.*)', errorHandler),  # 各类报错信息
     (r'/error/404', errorHandler),
     (r'/error/', errorHandler),
     (r".*", errorHandler404),
