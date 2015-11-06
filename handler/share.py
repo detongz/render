@@ -22,30 +22,33 @@ class shareHandler(Request):
 
     def post(self, *args, **kwargs):
         """解析来自web端post请求"""
-        try:
+        # try:
             # 从form表单中读取数据
-            f = self.request.files['sharefile'][0].body
-            fname = self.request.files['sharefile'][0].filename
-            id = self.get_argument('id')
+        f = self.request.files['sharefile'][0].body
+        fname = self.request.files['sharefile'][0].filename
+        id = self.get_argument('id')
+        platform = self.get_argument('platform')
 
-            if not getUserById(id):
-                self.redirect('/error/no_such_user/share')
+        if not getUserById(id):
+            self.redirect('/error/no_such_user/share')
 
-            # 保存文件
-            path = os.path.dirname(__file__)[:-8] + '/share/'
-            fpath = path + fname
-            fi = open(fpath, 'w')
-            fi.write(f)
-            fi.close()
+        # 保存文件
+        path = os.path.dirname(__file__)[:-8] + '/share/'
+        fpath = path + fname
+        fi = open(fpath, 'w')
+        fi.write(f)
+        fi.close()
 
-            fid = generateFId()  # 生成模型id
-            # 解压并处理文件
-            (naming, descriptionun) = unzip(path, fname, fid)
+        fid = generateFId()  # 生成模型id
+        # 解压并处理文件
+        (naming, descriptionun) = unzip(path, fname, fid)
 
+        if platform == '0':
             self.redirect('/')
+        elif platform == '1':
             self.write(json_encode({'result': 'success'}))
-        except Exception as e:
-            print e
+        # except Exception as e:
+        #     print e
 
 
 def generateFId():
