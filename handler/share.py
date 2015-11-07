@@ -32,11 +32,11 @@ class shareHandler(Request):
         (fid, time) = generateFId()
 
         # if platform == '0':
-        # f = self.request.files['sharefile'][0].body
-        # fname = self.request.files['sharefile'][0].filename
+        f = self.request.files['sharefile'][0].body
+        fname = self.request.files['sharefile'][0].filename
         # elif platform == '1':
-        f = self.get_argument('sharefile')
-        fname = fid
+        # f = self.get_argument('sharefile')
+        # fname = fid
         id = self.get_argument('id')
 
         if not getUserById(id):
