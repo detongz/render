@@ -96,8 +96,9 @@ def unzip(path, fname, id):
         ''' \
           % (path, id, path + fname, id, path + fname, id, path, id, id, id)
     os.system(cmd)
-    txt = commands.getstatusoutput('find -name "\*\.txt"')[1]
-    f = open('/tmp/share/temp-' + id + '/' + txt)
+    cmd='find /tmp/share/temp-'+id+' -name "*.txt"'
+    txt = commands.getstatusoutput(cmd)[1]
+    f = open(txt)
     line = f.readline()
     line = line.split('|')
     cmd = '''rm -rf %s/temp-%s''' % ('/tmp/share', id)
