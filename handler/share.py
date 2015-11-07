@@ -3,6 +3,7 @@
 import os
 import datetime
 import random
+import commands
 
 from tornado.escape import json_encode
 from handler.request import Request
@@ -59,9 +60,9 @@ class shareHandler(Request):
             self.redirect('/')
         elif platform == '1':
             self.write(json_encode({'result': 'success'}))
-        # except Exception as e:
-        #     print e
-        #     # self.write(json_encode({'result': 'fail!'}))
+            # except Exception as e:
+            #     print e
+            #     # self.write(json_encode({'result': 'fail!'}))
 
 
 def generateFId():
@@ -95,7 +96,8 @@ def unzip(path, fname, id):
         ''' \
           % (path, id, path + fname, id, path + fname, id, path, id, id, id)
     os.system(cmd)
-    f = open('/tmp/share/temp-' + id + '/' + fname.split('.')[0] + '.txt')
+    txt = commands.getstatusoutput('find -name "\*\.txt"')[1]
+    f = open('/tmp/share/temp-' + id + '/' + txt)
     line = f.readline()
     line = line.split('|')
     cmd = '''rm -rf %s/temp-%s''' % ('/tmp/share', id)
