@@ -54,6 +54,7 @@ class shareHandler(Request):
                 self.write(json_encode({'result': 'success'}))
         except Exception as e:
             print e
+            self.write(json_encode({'result': 'fail!'}))
 
 
 def generateFId():
@@ -85,7 +86,7 @@ def unzip(path, fname, id):
         mv temp-%s/*.png %s/%s.png
         mv temp-%s/*.unimax %s.unimax
         ''' \
-          % (path, id, path+fname, id, path+fname, id,path, id, id, id)
+          % (path, id, path + fname, id, path + fname, id, path, id, id, id)
     os.system(cmd)
     f = open('/tmp/share/temp-' + id + '/' + fname.split('.')[0] + '.txt')
     line = f.readline()
