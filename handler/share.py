@@ -24,10 +24,20 @@ class shareHandler(Request):
         """解析来自web端post请求"""
         try:
             # 从form表单中读取数据
-            f = self.request.files['sharefile'][0].body
-            fname = self.request.files['sharefile'][0].filename
-            id = self.get_argument('id')
             platform = self.get_argument('platform')
+            f = ''
+            fname = ''
+
+            # 生成模型id
+            (fid, time) = generateFId()
+
+            if platform == '0':
+                f = self.request.files['sharefile'][0].body
+                fname = self.request.files['sharefile'][0].filename
+            elif platform == '1':
+                f = self.get_argument('sharefile')
+                fname = fid
+            id = self.get_argument('id')
 
             if not getUserById(id):
                 self.redirect('/error/no_such_user/share')
@@ -38,9 +48,6 @@ class shareHandler(Request):
             fi = open(fpath, 'w')
             fi.write(f)
             fi.close()
-
-            # 生成模型id
-            (fid, time) = generateFId()
 
             # 解压并处理文件
             (naming, description) = unzip(path, fname, fid)
@@ -54,7 +61,7 @@ class shareHandler(Request):
                 self.write(json_encode({'result': 'success'}))
         except Exception as e:
             print e
-            self.write(json_encode({'result': 'fail!'}))
+            # self.write(json_encode({'result': 'fail!'}))
 
 
 def generateFId():
