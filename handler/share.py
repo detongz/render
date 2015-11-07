@@ -32,19 +32,15 @@ class shareHandler(Request):
         # 生成模型id
         (fid, time) = generateFId()
 
-        # if platform == '0':
         f = self.request.files['sharefile'][0].body
         fname = self.request.files['sharefile'][0].filename
-        # elif platform == '1':
-        # f = self.get_argument('sharefile')
-        # fname = fid
         id = self.get_argument('id')
 
         if not getUserById(id):
             self.redirect('/error/no_such_user/share')
 
         # 保存文件
-        path = os.path.dirname(__file__)[:-8] + '/share/'
+        path = os.path.dirname(__file__)[:-8] + '/static/imgshare'
         fpath = path + fname
         fi = open(fpath, 'w')
         fi.write(f)
@@ -54,7 +50,7 @@ class shareHandler(Request):
         (naming, description) = unzip(path, fname, fid)
 
         # 增加分享的文件记录
-        shareFile(fid, naming, description, '/share/' + fid + '.png', time, id)
+        shareFile(fid, naming, description, '/static/imgshare/' + fid + '.png', time, id)
 
         if platform == '0':
             self.redirect('/')

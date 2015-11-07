@@ -2,14 +2,16 @@
 
 import tornado.web
 from models.query import getUserById
+from models.files import getSharedModels
 
 
 class indexHandler(tornado.web.RequestHandler):
     """首页"""
 
     def get(self):
+        shared = getSharedModels()
         id = self.get_secure_cookie('id')
-        self.render("index.html", uid=id)
+        self.render("index.html", uid=id, sharing=shared)
 
 
 class userIndexHandler(tornado.web.RequestHandler):
