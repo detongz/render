@@ -22,46 +22,46 @@ class shareHandler(Request):
 
     def post(self, *args, **kwargs):
         """解析来自web端post请求"""
-        try:
-            # 从form表单中读取数据
-            platform = self.get_argument('platform')
-            f = ''
-            fname = ''
+        # try:
+        # 从form表单中读取数据
+        platform = self.get_argument('platform')
+        f = ''
+        fname = ''
 
-            # 生成模型id
-            (fid, time) = generateFId()
+        # 生成模型id
+        (fid, time) = generateFId()
 
-            if platform == '0':
-                f = self.request.files['sharefile'][0].body
-                fname = self.request.files['sharefile'][0].filename
-            elif platform == '1':
-                f = self.get_argument('sharefile')
-                fname = fid
-            id = self.get_argument('id')
+        # if platform == '0':
+        # f = self.request.files['sharefile'][0].body
+        # fname = self.request.files['sharefile'][0].filename
+        # elif platform == '1':
+        f = self.get_argument('sharefile')
+        fname = fid
+        id = self.get_argument('id')
 
-            if not getUserById(id):
-                self.redirect('/error/no_such_user/share')
+        if not getUserById(id):
+            self.redirect('/error/no_such_user/share')
 
-            # 保存文件
-            path = os.path.dirname(__file__)[:-8] + '/share/'
-            fpath = path + fname
-            fi = open(fpath, 'w')
-            fi.write(f)
-            fi.close()
+        # 保存文件
+        path = os.path.dirname(__file__)[:-8] + '/share/'
+        fpath = path + fname
+        fi = open(fpath, 'w')
+        fi.write(f)
+        fi.close()
 
-            # 解压并处理文件
-            (naming, description) = unzip(path, fname, fid)
+        # 解压并处理文件
+        (naming, description) = unzip(path, fname, fid)
 
-            # 增加分享的文件记录
-            shareFile(fid, naming, description, '/share/' + fid + '.png', time, id)
+        # 增加分享的文件记录
+        shareFile(fid, naming, description, '/share/' + fid + '.png', time, id)
 
-            if platform == '0':
-                self.redirect('/')
-            elif platform == '1':
-                self.write(json_encode({'result': 'success'}))
-        except Exception as e:
-            print e
-            # self.write(json_encode({'result': 'fail!'}))
+        if platform == '0':
+            self.redirect('/')
+        elif platform == '1':
+            self.write(json_encode({'result': 'success'}))
+        # except Exception as e:
+        #     print e
+        #     # self.write(json_encode({'result': 'fail!'}))
 
 
 def generateFId():
