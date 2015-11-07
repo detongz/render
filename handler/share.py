@@ -72,19 +72,25 @@ def generateFId():
 
 
 def unzip(path, fname, id):
-    cmd = '''cd %s
-            mkdir temp-%s
-            unzip %s -d temp-%s
-            rm %s
-            mv temp-%s/*.png %s.png
-            mv temp-%s/*.unimax %s.unimax
-            ''' \
-          % (path, id, fname, id, fname, id, id, id, id)
+    # 解压文件，把图片文件保存在工程目录的share文件夹下，模型文件放在/tmp/share文件夹下
+    cmd = '''
+        cd %s
+        if [ ! -d "/tmp/share" ]; then
+            mkdir /tmp/share
+        fi
+        cd /tmp/share
+        mkdir temp-%s
+        unzip %s -d temp-%s
+        rm %s
+        mv temp-%s/*.png %s/%s.png
+        mv temp-%s/*.unimax %s.unimax
+        ''' \
+          % (path, id, path+fname, id, path+fname, id,path, id, id, id)
     os.system(cmd)
-    f = open(path + '/temp-' + id + '/' + fname.split('.')[0] + '.txt')
+    f = open('/tmp/share/temp-' + id + '/' + fname.split('.')[0] + '.txt')
     line = f.readline()
     line = line.split('|')
-    cmd = '''rm -rf %s/temp-%s''' % (path, id)
+    cmd = '''rm -rf %s/temp-%s''' % ('/tmp/share', id)
     os.system(cmd)
     return line[0], line[1]  # 返回用户定描述信息义的名称和
 
