@@ -8,10 +8,12 @@ from query import db
 def shareFile(fid, fname, description, preview, date, id):
     sql = '''
           insert into file (fid,fname,description,preview,date)
-          values ()
-          ''' % (fid, fname, description, preview, date, id)
+          values ('%s','%s','%s','%s','%s');
+          insert into upload (id,fid) values ('%s','%s' );
+          ''' % (fid, fname, description, preview, date, id,fid)
+    db.execute(sql)
 
 
 def generatingfid(fid):
-    sql = 'select * from file where fid="%s";' % (fid)
+    sql = 'select * from file where fid="%s";' % fid
     return db.query(sql)

@@ -6,7 +6,7 @@ import random
 
 from tornado.escape import json_encode
 from handler.request import Request
-from models.files import generatingfid
+from models.files import generatingfid, shareFile
 from models.query import getUserById
 
 
@@ -22,36 +22,42 @@ class shareHandler(Request):
 
     def post(self, *args, **kwargs):
         """解析来自web端post请求"""
-        # try:
+        try:
             # 从form表单中读取数据
-        f = self.request.files['sharefile'][0].body
-        fname = self.request.files['sharefile'][0].filename
-        id = self.get_argument('id')
-        platform = self.get_argument('platform')
+            f = self.request.files['sharefile'][0].body
+            fname = self.request.files['sharefile'][0].filename
+            id = self.get_argument('id')
+            platform = self.get_argument('platform')
 
-        if not getUserById(id):
-            self.redirect('/error/no_such_user/share')
+            if not getUserById(id):
+                self.redirect('/error/no_such_user/share')
 
-        # 保存文件
-        path = os.path.dirname(__file__)[:-8] + '/share/'
-        fpath = path + fname
-        fi = open(fpath, 'w')
-        fi.write(f)
-        fi.close()
+            # 保存文件
+            path = os.path.dirname(__file__)[:-8] + '/share/'
+            fpath = path + fname
+            fi = open(fpath, 'w')
+            fi.write(f)
+            fi.close()
 
-        fid = generateFId()  # 生成模型id
-        # 解压并处理文件
-        (naming, descriptionun) = unzip(path, fname, fid)
+            # 生成模型id
+            (fid, time) = generateFId()
 
-        if platform == '0':
-            self.redirect('/')
-        elif platform == '1':
-            self.write(json_encode({'result': 'success'}))
-        # except Exception as e:
-        #     print e
+            # 解压并处理文件
+            (naming, description) = unzip(path, fname, fid)
+
+            # 增加分享的文件记录
+            shareFile(fid, naming, description, '/share/' + fid + '.png', time, id)
+
+            if platform == '0':
+                self.redirect('/')
+            elif platform == '1':
+                self.write(json_encode({'result': 'success'}))
+        except Exception as e:
+            print e
 
 
 def generateFId():
+    now = id = datetime.datetime.now()
     while True:
         now = datetime.datetime.now()
         r = random.randint(0, 99)
@@ -62,7 +68,7 @@ def generateFId():
         id = now.strftime('%f') + r
         if not generatingfid(id):
             break
-    return id
+    return id, now.strftime("%Y-%m-%d %H:%M:%S")
 
 
 def unzip(path, fname, id):
@@ -80,7 +86,7 @@ def unzip(path, fname, id):
     line = line.split('|')
     cmd = '''rm -rf %s/temp-%s''' % (path, id)
     os.system(cmd)
-    return line[0], line[1]
+    return line[0], line[1]  # 返回用户定描述信息义的名称和
 
 
 def removeShared(path, id):
