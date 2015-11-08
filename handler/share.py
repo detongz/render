@@ -5,7 +5,7 @@ import datetime
 import random
 import commands
 
-from handler.handleInput import qn, qndes
+from handler.handleInput import text2Html, qndes
 from tornado.escape import json_encode
 from handler.request import Request
 from models.files import generatingfid, shareFile, shareFileImg
@@ -150,7 +150,7 @@ class sharePictureHandler(Request):
                         self.redirect('/error/no_such_user/share')
                     else:
                         try:
-                            description = qndes(description)
+                            description = text2Html(description)  # 保存换行信息
                             picname = qndes(picname)
 
 
@@ -166,7 +166,7 @@ class sharePictureHandler(Request):
                                 fi = open(fpath, 'w')
                                 fi.write(f)
                                 fi.close()
-                                shareFileImg(fid, picname, description, '/static/imgshare/' + filename,time,id)
+                                shareFileImg(fid, picname, description, '/static/imgshare/' + filename, time, id)
 
                                 self.redirect('/user')
                             except Exception as e:
@@ -174,5 +174,4 @@ class sharePictureHandler(Request):
                         except TypeError:
                             self.redirect('/error/special_marks/share')
         except KeyError as e:
-            if e=='sharefile':
-                self.redirect('/error/please_select_file/share')
+            pass
