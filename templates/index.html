@@ -18,6 +18,9 @@
     {% include header.html %}
 
 	<section class="main clearfix">
+        {% if not sharing %}
+
+        {% else %}
         {% for s in sharing %}
 		<div class="work">
 			<a href="inner.html">
@@ -29,7 +32,8 @@
 				</div>
 			</a>
 		</div>
-        {% end %}
+        {% end %}{#end for#}
+        {% end %}{# end if#}
 	</section><!-- end main -->
 	
 </body>

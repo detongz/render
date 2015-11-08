@@ -17,7 +17,8 @@
                     $('#button').attr('class','pure-u-1');
                     $('#button').css('margin-top','40px');
                     $('#pic').css('width', '100%');
-                    $('#shared').css('margin-top','20px');
+                    $('aside').css('width', $('work').width+30);
+                    $('#shared').css('margi','20px auto');
                     $('#pic').attr('class','pure-u-1');
                     $('.pure-button').css('width','100%');
                     $('.pure-button').css('max-width','none');
@@ -25,7 +26,8 @@
                 else{
                     $('#button').attr('class','pure-u-2-5');
                     $('#button').css('margin-top','0px');
-                    $('#shared').css('margin-top','0px');
+                    $('#shared').css('margin','0px 70px');
+                    $('aside').css('width', $('work').css('width'));
                     $('#pic').css('width', '100px');
                     $('#pic').attr('class','pure-u-1-5');
                     $('.pure-button').css('width','100%');
@@ -37,7 +39,8 @@
                     $('#button').attr('class','pure-u-1');
                     $('#button').css('margin-top','40px');
                     $('#pic').css('width', '100%');
-                    $('#shared').css('margin-top','20px');
+                    $('aside').css('width', $('work').width+30);
+                    $('#shared').css('margin','20px auto');
                     $('#pic').attr('class','pure-u-1');
                     $('.pure-button').css('width','100%');
                     $('.pure-button').css('max-width','none');
@@ -45,7 +48,8 @@
                 else{
                     $('#button').attr('class','pure-u-2-5');
                     $('#button').css('margin-top','0px');
-                    $('#shared').css('margin-top','0px');
+                    $('#shared').css('margin','0px 70px');
+                    $('aside').css('width', $('work').css('width'));
                     $('#pic').css('width', '100px');
                     $('#pic').attr('class','pure-u-1-5');
                     $('.pure-button').css('width','100%');
@@ -54,6 +58,7 @@
             });
         })
     </script>
+    <style>h1 span{font-size: 0.75em; font-weight: lighter; overflow:hidden;} h1 p{font-size: 0.6em; font-weight: lighter;color:#333;}</style>
 </head>
 <body>
 
@@ -81,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="pure-u-2-5" id="button">
+                    <div class="pure-u-2-5" id="button" style="margin-bottom: 20px;">
                         <a href="/share" class="pure-button pure-button-primary" style="">分享模型</a>
                         <a href="/changeprofile" class="pure-button pure-button-primary" style="background: #33CCFF;">修改我的资料</a>
                     </div>
@@ -89,13 +94,14 @@
             </div>
 		</section>
         <div id="shared">
+            <aside style="color:#fff; width: 33%;max-width: 260px; padding:15px; margin-bottom: 20px; background: #009ACD;"><p>{{ uid }}分享的作品</p></aside>
             {% for s in sharing %}
-            <div class="work">
+            <div class="work" style="max-width: 290px;">
                 <a href="inner.html">
-                    <img src="{{ s['preview'] }}" class="media" alt=""/>
+                    <img src="{{ s['preview'] }}" class="media" style="max-width: 290px;" alt=""/>
                     <div class="caption">
                         <div class="work_title">
-                            <h1><span>{{ s['description'] }}</span></h1>
+                            <h1><p>上传时间</p><span>{{ s['date'] }}</span><br><br><p>作品描述</p><span>{{ s['description'] }}</span></h1>
                         </div>
                     </div>
                 </a>
