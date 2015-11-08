@@ -593,7 +593,8 @@ h5, h6          { font-weight: bolder }
 }
 
 @media (max-width:550px){
-     .main .work{
+     .main .
+     work{
         width: 100%;
         max-width: 350px;
     }

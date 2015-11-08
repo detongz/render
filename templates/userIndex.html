@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 	<title>{{ user['id'] }}的主页 - 3DRender</title>
 	<meta charset="utf-8">
@@ -14,30 +14,42 @@
             $('#user').attr('class','selected');
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
-                    $('input').css('width','100%');
+                    $('#button').attr('class','pure-u-1');
+                    $('#button').css('margin-top','40px');
+                    $('#pic').css('width', '100%');
+                    $('#shared').css('margin-top','20px');
+                    $('#pic').attr('class','pure-u-1');
                     $('.pure-button').css('width','100%');
-                    $('.splash-container').css('margin-left','0');
-                    $('#intro').css('width',$('.content').css('width'));
+                    $('.pure-button').css('max-width','none');
                 }
                 else{
-                    $('input').css('width','67%');
-                    $('.pure-button').css('width','67%');
-                    $('.splash-container').css('margin-left','100px');
-                    $('#intro').css('width',$('.content').css('width'));
+                    $('#button').attr('class','pure-u-2-5');
+                    $('#button').css('margin-top','0px');
+                    $('#shared').css('margin-top','0px');
+                    $('#pic').css('width', '100px');
+                    $('#pic').attr('class','pure-u-1-5');
+                    $('.pure-button').css('width','100%');
+                    $('.pure-button').css('max-width','200px');
                 }
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){
-                    $('input').css('width','100%');
+                    $('#button').attr('class','pure-u-1');
+                    $('#button').css('margin-top','40px');
+                    $('#pic').css('width', '100%');
+                    $('#shared').css('margin-top','20px');
+                    $('#pic').attr('class','pure-u-1');
                     $('.pure-button').css('width','100%');
-                    $('.splash-container').css('margin-left','0');
-                    $('#intro').css('width',$('.content').css('width'));
+                    $('.pure-button').css('max-width','none');
                 }
                 else{
-                    $('input').css('width','67%');
-                    $('.pure-button').css('width','67%');
-                    $('.splash-container').css('margin-left','100px');
-                    $('#intro').css('width',$('.content').css('width'));
+                    $('#button').attr('class','pure-u-2-5');
+                    $('#button').css('margin-top','0px');
+                    $('#shared').css('margin-top','0px');
+                    $('#pic').css('width', '100px');
+                    $('#pic').attr('class','pure-u-1-5');
+                    $('.pure-button').css('width','100%');
+                    $('.pure-button').css('max-width','200px');
                 }
             });
         })
@@ -50,28 +62,46 @@
 	<section class="main clearfix">
 
 		<section class="content">
-            <div class="wrapper form-signin" style="width: 100px;">
-                <img src="{{ user['image'] }}" style="width: 100px;border-radius: 5px; border: 3px solid #FFFACD;">
-                <h4 style="text-align: center;margin-top: 20px;">{{ user['id'] }}</h4></p>
-            </div>
             <div id="intro" style="margin:-60px 40px;">
                 <p style="text-align: center;">{% if  user['description'] is not None %}{{ user['description'] }}{% else %}<br>{% end %}</p>
                 <div class="pure-g">
-                        <div class="pure-u-1-4" style="font-weight: bold;font-size: 12px; color:#008B8B;">
-                            <label style="float: right;margin-right: 10px;">我的电子邮箱</label><br><br>
+                    <div class="pure-u-1-5" id="pic" style="margin-bottom: 20px;">
+                        <img src="{{ user['image'] }}" style="border-radius: 5px; border: 3px solid #FFFACD;">
+                    </div>
+                    <div id="intro" class="pure-u-2-5" style="font-weight: bold;font-size: 12px; min-width: 290px;">
+                        <div class="pure-u-1-3" style="color:#444444; min-width: 180px;">
+                            <label style="float: right;margin-right: 10px;">昵称</label><br>
+                            <label style="float: right;margin-right: 10px;">我的电子邮箱</label><br>
                             <label style="float: right;margin-right: 10px;">已经分享的模型数目</label>
                         </div>
-                        <div class="pure-u-1-4">
-                            <span>{{ user['email'] }}</span><br><br>
+                        <div class="pure-u-1-3">
+                            <span>{{ user['id'] }}</span><br>
+                            <span>{{ user['email'] }}</span><br>
                             <span>0</span>
                         </div>
-                    <div class="pure-u-1-2">
-                        <a href="/share" class="pure-button pure-button-primary">分享模型</a>
-                        <a href="/changeprofile" class="pure-button pure-button-primary" style="background: #FFC125;margin-top: 10px;">修改我的资料</a>
+                    </div>
+
+                    <div class="pure-u-2-5" id="button">
+                        <a href="/share" class="pure-button pure-button-primary" style="">分享模型</a>
+                        <a href="/changeprofile" class="pure-button pure-button-primary" style="background: #33CCFF;">修改我的资料</a>
                     </div>
                 </div>
             </div>
 		</section>
+        <div id="shared">
+            {% for s in sharing %}
+            <div class="work">
+                <a href="inner.html">
+                    <img src="{{ s['preview'] }}" class="media" alt=""/>
+                    <div class="caption">
+                        <div class="work_title">
+                            <h1><span>{{ s['description'] }}</span></h1>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% end %}
+        </div>
 	</section><!-- end main -->
 	
 </body>

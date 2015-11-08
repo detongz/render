@@ -8,17 +8,16 @@ db = torndb.Connection('localhost', 'renderServer', 'root')
 """针对用户进行操作的部分"""
 
 
-def signup(id, password, email):
-    sql = '''insert into user (%s,%s,%s) values ('1','1','q@q.com');''' % (id, password, email)
-    db.execute(sql)
-
-
 def setUserImage(id, fname):
+    # 修改用户头像
+    # 未实现！！！
     sql = '''update user set image='/static/images/preview/%s' where id='%s';''' % (fname, id)
     db.execute(sql)
 
 
 def setUserDescription(id, description):
+    # 修改用户自我介绍
+    # 未实现！！！
     sql = '''update user set description='%s' where id='%s';''' % (description, id)
     db.execute(sql)
 

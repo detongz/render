@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 	<title>作品列表 - 3DRender</title>
 	<meta charset="utf-8">
@@ -11,108 +11,25 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/main.js"></script>
 </head>
+<style>
+    span{margin-right: 5px;font-size: 0.75em; font-weight: lighter; overflow:hidden;}
+</style>
 <body>
     {% include header.html %}
 
 	<section class="main clearfix">
+        {% for s in sharing %}
 		<div class="work">
 			<a href="inner.html">
-				<img src="/static/images/work1.jpg" class="media" alt=""/>
+				<img src="{{ s['preview'] }}" class="media" alt=""/>
 				<div class="caption">
 					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
+						<h1><span>作者</span>{{ s['id'] }}<br><br><span>{{ s['description'] }}</span></h1>
 					</div>
 				</div>
 			</a>
 		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work2.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work3.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work4.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work5.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work6.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work2.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work3.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="/static/images/work1.jpg" class="media" alt=""/>
-				<div class="caption">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
+        {% end %}
 	</section><!-- end main -->
 	
 </body>
