@@ -16,20 +16,24 @@
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
+                    $('textarea').css('width','100%');
                     $('.pure-button').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
+                    $('textarea').css('width','67%');
                     $('.pure-button').css('width','30%');
                 }
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
+                    $('textarea').css('width','100%');
                     $('.pure-button').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
+                    $('textarea').css('width','67%');
                     $('.pure-button').css('width','30%');
                 }
             });
@@ -67,9 +71,13 @@
 			<div class="content form-signin" style="margin-top:40px;max-width: 5000px;">
                 <div class="pure-form pure-form-stacked">
                     <form action="" enctype="multipart/form-data" method="post">
-                        <label for="file">选择要分享的模型～</label>
-                        <input type="file" name="sharefile" id="file" style="opacity: 0;z-index: 1;width: 100%;" accept="zunimax" hidden required/>
-                        <button class="pure-button pure-button-primary" style="z-index:-1; background: #FFCC22;" id="choosefile">请选择导出过的模型文件(′・ω・`)</button><span id="fname" style="margin:10px;"></span>
+                        <label for="file">选择要分享的文件～</label>
+                       <input type="file" name="sharefile" id="file" style="opacity: 0;z-index: 1;width: 100%;" accept="image/*" hidden required/>
+                        <button class="pure-button pure-button-primary" style="z-index:-1; background: #FFCC22;" id="choosefile">请选择单张图片文件哦&nbsp; ≖‿≖✧</button><span id="fname" style="margin:10px;"></span>
+                        <label for="description">作品名称</label>
+                        <input type="text" name="name" placeholder="为你的作品起个名字吧">
+                        <label for="description">作品介绍</label>
+                        <textarea id="description" placeholder="请介绍一下你的作品吧" name="description" rows="10" style="width:100%;resize:none;"></textarea>
                         <input type="text" name="id" hidden value="{{ uid }}">
                         <input type="text" name="platform" hidden value="0">
                         <input type="submit" id="submit" style="display: none;">

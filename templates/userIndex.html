@@ -11,7 +11,9 @@
     <script type="text/javascript" src="/static/js/main.js"></script>
     <script>
         $(document).ready(function(){
+
             $('#user').attr('class','selected');
+            $('.work').css('height',$('.work').css('width'));
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('#button').attr('class','pure-u-1');
@@ -58,7 +60,7 @@
             });
         })
     </script>
-    <style>h1 span{font-size: 0.75em; font-weight: lighter; overflow:hidden;} h1 p{font-size: 0.6em; font-weight: lighter;color:#333;}</style>
+    <style>h1 span{font-size: 0.8em; font-weight: lighter; overflow:hidden; height:15px;} h1 p{font-size: 0.65em; font-weight: lighter;color:#333; overflow:hidden; }</style>
 </head>
 <body>
 
@@ -87,25 +89,33 @@
                     </div>
 
                     <div class="pure-u-2-5" id="button" style="margin-bottom: 20px;">
-                        <a href="/share" class="pure-button pure-button-primary" style="">分享模型</a>
-                        <a href="/changeprofile" class="pure-button pure-button-primary" style="background: #33CCFF;">修改我的资料</a>
+                        <a href="/chooseWhich" class="pure-button pure-button-primary" style="background: #33CCFF;">分享作品</a>
+                        <a href="/changeprofile" class="pure-button pure-button-primary">修改我的资料</a>
                     </div>
                 </div>
             </div>
 		</section>
         <div id="shared">
-            <aside style="color:#fff; width: 33%;max-width: 260px; padding:15px; margin-bottom: 20px; background: #009ACD;"><p>{{ uid }}分享的作品</p></aside>
-            {% for s in sharing %}
-            <div class="work" style="max-width: 290px;">
-                <a href="inner.html">
-                    <img src="{{ s['preview'] }}" class="media" style="max-width: 290px;" alt=""/>
-                    <div class="caption">
-                        <div class="work_title">
-                            <h1><p>上传时间</p><span>{{ s['date'] }}</span><br><br><p>作品描述</p><span>{{ s['description'] }}</span></h1>
+            {% if not sharing %}
+            <aside style="color:#fff; width: 33%;max-width: 260px; padding:15px; margin-bottom: 20px; background: #009ACD; padding-left: 0;"><p>{{ uid }}还没有分享的作品哦 (`・ω・´)</p></aside>
+            {% else %}
+                <aside style="color:#333; width: 33%;max-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><p>{{ uid }}分享的作品 (｡･ω･｡)</p></aside>
+                {% for s in sharing %}
+                <div class="work" style="max-width: 290px;">
+                    <a href="inner.html">
+                        <img src="{{ s['preview'] }}" class="media" style="max-width: 290px;" alt=""/>
+                        <div class="caption">
+                            <div class="work_title" style="top: 20%;">
+                                <h1>
+                                    <p>作品名称</p><span>{{ s['fname'] }}</span><br><br>
+                                    <p>上传时间</p><span>{{ s['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span><br><br>
+                                    <p>作品描述</p><span>{{ s['description'] }}</span>
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+                {% end %}
             {% end %}
         </div>
 	</section><!-- end main -->

@@ -9,3 +9,12 @@ def qn(s):
             s = s.replace(stuff, "")
             raise TypeError
     return s
+
+
+def qndes(s):
+    dirty_stuff = ["\"", "\\", "/", "*", "'", "=", "-", "#", ";", "<", ">", "+", "%"]
+    for stuff in dirty_stuff:
+        if s.find(stuff) >= 0:
+            s = s.replace(stuff, "")
+            raise TypeError
+    return s

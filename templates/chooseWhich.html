@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>选择分享类型 - 3DRender</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#share').attr('class','selected');
+        });
+    </script>
+</head>
+<body>
+    {% include header.html %}
+
+	<section class="main clearfix">
+        <div class="form-signin">
+		<div class="pure-form pure-form-stacked" style="padding-top: 100px;">
+            <div style="z-index: 1;">
+                <h2>要分享的作品是什么类型的呢(⊙o⊙)？</h2>
+                <a class="pure-button pure-button-primary" style="width: 100%; margin-top:20px;background: rgb(66, 184, 221);" href="/share">作品是模型</a>
+                <a class="pure-button pure-button-primary" style="width: 100%; margin-top:10px;" href="/sharePic">作品是图片</a>
+            </div>
+        </div>
+{#        <img class="bg" src="/static/images/3drender.png" style="max-width: 300px;margin-top:40px;filter:alpha(opacity=5); /*IE滤镜，透明度50%*/-moz-opacity:0.05; /*Firefox私有，透明度50%*/opacity:0.05;/*其他，透明度50%*/ z-index: 0;">#}
+	    </div>
+    </section><!-- end main -->
+	
+</body>
+</html>
