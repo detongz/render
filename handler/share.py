@@ -105,12 +105,6 @@ def unzip(path, fname, id):
     return line[0], line[1]  # 返回用户定描述信息义的名称和
 
 
-def removeShared(path, id):
-    # 删除已经分享的文件，未使用！！！
-    cmd = '''rm %s/%s.*''' % (path, id)
-    os.system(cmd)
-
-
 class chooseWhichHandler(Request):
     # 选择要分享的文件类型
     def get(self, *args, **kwargs):

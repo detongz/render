@@ -52,6 +52,19 @@ def getCertainFile(fid):
     return db.get(sql)
 
 
+def getUploadType(fid):
+    # 删除分享，获取上传用户名和上传类型
+    sql = '''select type,id from file as f,upload as up where up.fid=f.fid and up.fid='%s';''' % fid
+    return db.get(sql)
+
+
+def removeShared(fid):
+    sql = '''
+        delete upload,file from upload,file
+        where file.fid='%s' and upload.fid='%s';''' % (fid, fid)
+    return db.execute(sql)
+
+
 if __name__ == "__main__":
     id = raw_input()
-    print getCertainFile(id)
+    print getUploadType(id)

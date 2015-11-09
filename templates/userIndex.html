@@ -63,7 +63,7 @@
     </script>
     <style>
          .desc{
-            max-height: 60px;
+            max-height: 30px;
             overflow: hidden;font-size: 0.6em;margin-top: 3px;font-weight: lighter;}
          h1 span{font-size: 0.8em; font-weight: lighter; overflow:hidden; height:15px;}
          h1 p.title{font-size: 0.65em; font-weight: lighter;color:#333; overflow:hidden; }
@@ -100,19 +100,23 @@
                         <a href="/changeprofile" class="pure-button pure-button-primary">修改我的资料</a>
                     </div>
                 </div>
+                <div>
+                    <h4>个人介绍</h4>
+                    <p>{% if not user['description'] %}还没有填写个人介绍哦○(・x・){% else %}{{ user['description'] }}{% end %}</p>
+                </div>
             </div>
 		</section>
         <div id="shared">
             {% if not sharing %}
-            <aside style="color:#fff; width: 33%;max-width: 260px; padding:15px; margin-bottom: 20px; background: #009ACD;"><p>{{ uid }}还没有分享的作品哦 (`・ω・´)</p></aside>
+            <div style="color:#333; width: 33%;max-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ uid }}还没有分享的作品哦 (｡･ω･｡)</h3></div>z
             {% else %}
-                <aside style="color:#333; width: 33%;max-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><p>{{ uid }}分享的作品 (｡･ω･｡)</p></aside>
+                <div style="color:#333; width: 33%;max-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ uid }}分享的作品 (｡+･`ω･`)</h3></div>
                 {% for s in sharing %}
                 <div class="work" style="max-width: 290px;">
                     <a href="/viewDetail/{{ s['fid'] }}">
                         <img src="{{ s['preview'] }}" class="media" style="max-width: 290px;" alt=""/>
                         <div class="caption">
-                            <div class="work_title" style="top: 25%;">
+                            <div class="work_title" style="top: 33%;">
                                 <h1>
                                     <p class="title">作品名称</p><span>{{ s['fname'] }}</span><br><br>
                                     <p class="title">上传时间</p><span>{{ s['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span><br><br>

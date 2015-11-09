@@ -12,9 +12,35 @@
     <script type="text/javascript" src="/static/js/main.js"></script>
     <script type="text/javascript" src="/static/js/signup.js"></script>
 </head>
+<style>
+    aside .pure-button{
+        width:100%;margin-top: 10px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $('#delete').click(function(){
+            $('#confirm').css('height',document.body.scrollHeight);
+            $('#confirm').css('width',document.body.scrollWidth);
+            $('#confirm').css('display','block');
+            $('aside').css('display','block');
+            $('aside').css('margin-top',$('#delete').offset().top-100);
+            $('aside').css('margin-left',$('#delete').offset().left-300);
+        });
+        $('#cancel').click(function(){
+            $('#confirm').css('display','none');
+            $('aside').css('display','none');
+        });
+    });
+</script>
 <body>
-
-	{% include header.html %}
+<div id="confirm" style="width:100% ; position: absolute; top: 0px; left: 0px; background-color: rgb(45, 45, 45); display: none; z-index: 5000; opacity: 0.5; "></div>
+<aside style="width:30%; height: 180px; opacity: 1;position: absolute; z-index: 8000; display: none; background-color: #FFF68F;">
+    <h2 style="opacity: 1;">真的要删除分享吗(..•˘_˘•..)</h2>
+    <button id="cancel" class="pure-button pure-button-primary" style="background-color: #FFA54F;">取消</button>
+    <a href="/share/delete/{{ info['fid'] }}" class="pure-button pure-button-primary" style="background-color:#79CDCD;">确定删除</a>
+</aside>
+{% include header.html %}
 
 	<section class="main clearfix">
 
@@ -30,7 +56,7 @@
 			<div class="content" style="max-width: 5000px;">
                 <img style="box-shadow:10px 4px 20px #999999;  border-top:60px solid #FFFFF0; border-right:20px solid #FFFFF0;border-left: 20px solid #FFFFF0; border-bottom: 100px solid #FFFFF0; border-radius: 5px;" src="{{ info['preview'] }}">
                 <div class="pure-g" style="margin-top: 20px;">
-                    <div class="pure-u-1-8"><a href="/作者详情"><img src="{{ info['uImage'] }}" style="max-width: 40px; border-radius: 3px;"></a></div>
+                    <div class="pure-u-1-8"><a href="/作者详情"><img src="{{ info['uImage'] }}" style=" margin-top: 10px; max-width: 40px; border-radius: 3px;"></a></div>
                     <div class="pure-u-1-2" style="min-width: 300px;">
                         <div class="pure-u-1-8" style="min-width: 50px;">
                             <span style="font-weight: lighter; font-size: 0.8em;">作者</span><br>
@@ -41,11 +67,17 @@
                             <span style="font-weight: bold; font-size: 0.9em; margin-left: 20px;">{{ info['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span>
                         </div>
                     </div>
+                    {% if uid==info['id'] %}
+                    <div class="pure-u-1-6" style="min-width: 200px; margin-top: 10px;">
+                        <button id="delete" class="pure-button pure-button-primary" style="width: 100%;background-color: #FF8C00;">删除这个作品</button>
+                    </div>
+                    {% end %}
                 </div>
                 <div style="margin-top: 40px;">
                     <h3>作品介绍</h3>
                     {{ info['fdes'] }}
                 </div>
+
             </div><!-- end content -->
 		</section>
 	</section><!-- end main -->
