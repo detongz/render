@@ -1,7 +1,7 @@
 # coding:utf-8
 import os
 import commands
-from models.files import getCertainFile, getUploadType
+from models.files import getCertainFile, getUploadType, removeSharedRecord
 from handler.request import Request
 
 
@@ -22,9 +22,11 @@ class shareDeleteHandler(Request):
                 removeShared(pathPic, fid)
                 pathMod = '/tmp/share'
                 removeShared(pathMod, fid)
+                removeSharedRecord(fid)
             elif type['type'] == 'pic':
                 pathPic = os.path.dirname(__file__)[:-8] + '/static/imgshare'
                 removeShared(pathPic, fid)
+                removeSharedRecord(fid)
 
         self.redirect('/user')
 

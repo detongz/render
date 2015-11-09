@@ -47,14 +47,14 @@
 		<section class="top">
 			<div class="wrapper content_header clearfix">
 				<h1 class="title">
-                    {{ info['fname'] }}<label style="margin-left: 50px; font-size: 0.6em;">作者{{ info['id'] }}</label>
+                    {{ info['fname'] }}<label style="margin-left: 50px; font-size: 0.6em;"><span style="margin-right: 5px; font-weight: lighter;">作者</span>{{ info['id'] }}</label>
                 </h1>
 			</div>
 		</section><!-- end top -->
 
 		<section class="wrapper" style="margin-top:-40px;">
 			<div class="content" style="max-width: 5000px;">
-                <img style="box-shadow:10px 4px 20px #999999;  border-top:60px solid #FFFFF0; border-right:20px solid #FFFFF0;border-left: 20px solid #FFFFF0; border-bottom: 100px solid #FFFFF0; border-radius: 5px;" src="{{ info['preview'] }}">
+                <img style="box-shadow:10px 8px 28px #999999;  border-top:60px solid #FFFFF0; border-right:20px solid #FFFFF0;border-left: 20px solid #FFFFF0; border-bottom: 100px solid #FFFFF0; border-radius: 5px;" src="{{ info['preview'] }}">
                 <div class="pure-g" style="margin-top: 20px;">
                     <div class="pure-u-1-8"><a href="/作者详情"><img src="{{ info['uImage'] }}" style=" margin-top: 10px; max-width: 40px; border-radius: 3px;"></a></div>
                     <div class="pure-u-1-2" style="min-width: 300px;">
@@ -75,7 +75,7 @@
                 </div>
                 <div style="margin-top: 40px;">
                     <h3>作品介绍</h3>
-                    {{ info['fdes'] }}
+                    {% if not info['fdes'] %}作者没有写评论哦(๑¯ω¯๑) {% else %}{{ info['fdes'] }}{% end %}
                 </div>
 
             </div><!-- end content -->

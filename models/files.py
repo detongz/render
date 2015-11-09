@@ -58,10 +58,10 @@ def getUploadType(fid):
     return db.get(sql)
 
 
-def removeShared(fid):
+def removeSharedRecord(fid):
     sql = '''
         delete upload,file from upload,file
-        where file.fid='%s' and upload.fid='%s';''' % (fid, fid)
+        where file.fid=upload.fid and upload.fid='%s';''' % fid
     return db.execute(sql)
 
 
