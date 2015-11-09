@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<title>注册 - 3DRender</title>
+	<title>修改我的资料 - 3DRender</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
@@ -24,6 +24,8 @@
                     $('textarea').css('width','67%');
                     $('.pure-button').css('width','67%');
                 }
+                $('#email').val('{{ user['email'] }}');
+                {% if user['description'] is not None %}$('#description').val('{{ user['description'] }}');{% end %}
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){
@@ -31,8 +33,7 @@
                     $('textarea').css('width','100%');
                     $('.pure-button').css('width','100%');
                 }
-                else{
-                    $('input').css('width','67%');
+                else{$('input').css('width','67%');
                     $('textarea').css('width','67%');
                     $('.pure-button').css('width','67%');
                 }
@@ -53,7 +54,7 @@
 
 		<section class="top">
 			<div class="wrapper content_header clearfix">
-				<h1 class="title">新用户注册<label style="float: right;margin-left: 20px;">Sign Up</label></h1>
+				<h1 class="title">修改我的资料<label style="float: right;margin-left: 20px;">Change Profile</label></h1>
 			</div>
 		</section><!-- end top -->
 
@@ -61,17 +62,13 @@
 			<div class="content form-signin">
                 <div class="pure-form pure-form-stacked">
                     <label for="name">昵称</label>
-                    <input type="text" id="name" placeholder="请输入昵称" autofocus>
-                    <label for="password" style="margin-top: 1em;">登陆密码</label>
-                    <input type="password" id="password" placeholder="请输入密码" >
-                    <label for="cpassword" style="margin-top: 1em;">确认密码</label>
-                    <input type="password" id="cpassword" placeholder="请再次输入密码" >
+                    <input type="text" id="name" placeholder="{{ user['id'] }}" autofocus disabled>
                     <label for="email" style="margin-top: 1em;">用户邮箱</label>
-                    <input type="email" id="email" placeholder="请输入邮箱哦" >
-                    <label for="description" style="margin-top: 2em;">个人介绍</label>
+                    <input type="email" id="email" >
+                    <label for="description" style="margin-top: 1em;">个人介绍</label>
                     <textarea id="description" name="description" rows="10" style="resize: none;" placeholder="请填写个人简介"></textarea>
                     <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
-                        <button class="pure-button pure-button-primary" style="background: rgb(66, 184, 221);" id="submiting">注册</button>
+                        <button class="pure-button pure-button-primary" id="submiting">提交</button>
                     </div>
                 </div>
 			</div><!-- end content -->

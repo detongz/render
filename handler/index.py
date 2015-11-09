@@ -1,4 +1,9 @@
 # coding:utf-8
+import base64
+import sys
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 from handler.request import Request
 from models.query import getUserById
@@ -16,6 +21,7 @@ class indexHandler(Request):
 
 class userIndexHandler(Request):
     """用户个人首页"""
+
     def get(self, *args, **kwargs):
         id = self.get_secure_cookie('id')
         if not id:
@@ -26,5 +32,11 @@ class userIndexHandler(Request):
 
 
 class viewCertainUserHandler(Request):
-    def get(self, *args, **kwargs):
-        pass
+    # 查看特定用户的资料
+    def get(self, tid, *args, **kwargs):
+        id = self.get_secure_cookie('id')
+        tid = base64.decodestring(tid)
+
+        user = getUserById(tid)
+        shared = getSharedModelsById(tid)
+        self.render('userDetail.html', uid=id, user=user, sharing=shared)

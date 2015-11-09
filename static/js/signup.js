@@ -6,9 +6,15 @@ $(document).ready(function(){
         var pwd=$('#password').val();
         var email=$('#email').val();
         var cpwd=$('#cpassword').val();
+        var description=$('#description').val();
         if(id==""){
             flag+=1;
             $('#name').after('<aside><p>要输入用户名哦( ◔ ڼ ◔ )</p></aside>');
+            $('aside').css('width',$('#name').width()-15);
+        }
+        else if(id.length>10){
+            flag+=1;
+            $('#name').after('<aside><p>输入的用户名在十个字之内哦(^・ω・^)</p></aside>');
             $('aside').css('width',$('#name').width()-15);
         }
         if(pwd==""){
@@ -40,6 +46,7 @@ $(document).ready(function(){
                     'id':id,
                     'pwd':pwd,
                     'email':email,
+                    'description':description,
                 },
                 success:function(data){
                     if(data.result=='success'){

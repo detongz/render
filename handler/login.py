@@ -3,7 +3,7 @@ from _mysql import IntegrityError
 
 from handler.request import Request
 from tornado.escape import json_encode
-from handleInput import qn
+from handleInput import qn, qndes, text2Html
 from models.query import getUser, getUserById, signUp
 import re
 
@@ -62,14 +62,18 @@ class signupHandler(Request):
         id = self.get_argument('id')
         pwd = self.get_argument('pwd')
         email = self.get_argument('email')
+        desc = self.get_argument('description')
 
         try:
             id = qn(id)
             pwd = qn(pwd)
             email = qn(email)
+            desc = qndes(desc)
+            if desc != '':
+                desc = text2Html(desc)
             if not getUserById(id):
                 try:
-                    signUp(id, pwd, email)
+                    signUp(id, pwd, email, desc)
                     result['result'] = 'success'
                 except IntegrityError:
                     result['result'] = 'email_existed'
@@ -85,4 +89,12 @@ class changePersonalProfileHandler(Request):
     """用户修改个人信息"""
 
     def get(self, *args, **kwargs):
+        id = self.get_secure_cookie('id')
+        if not id:
+            self.redirect('/')
+        else:
+            user = getUserById(id)
+            self.render('changeProfile.html', uid=id, user=user)
+
+    def post(self, *args, **kwargs):
         pass

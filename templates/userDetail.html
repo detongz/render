@@ -13,7 +13,6 @@
     <script>
         $(document).ready(function(){
 
-            $('#user').attr('class','selected');
             $('.work').css('height',$('.work').css('width'));
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
@@ -67,6 +66,9 @@
             overflow: hidden;font-size: 0.6em;margin-top: 3px;font-weight: lighter;}
          h1 span{font-size: 0.8em; font-weight: lighter; overflow:hidden; height:15px;}
          h1 p.title{font-size: 0.65em; font-weight: lighter;color:#333; overflow:hidden; }
+        #intro label{font-size: 1.1em;
+            color: #666;}
+        #intro span{font-size: 1.2em;}
     </style>
 </head>
 <body>
@@ -80,10 +82,10 @@
                 <p style="text-align: center;">{% if  user['description'] is not None %}{{ user['description'] }}{% else %}<br>{% end %}</p>
                 <div class="pure-g">
                     <div class="pure-u-1-5" id="pic" style="margin-bottom: 20px;">
-                        <a href="/setPortrait"><img src="{{ user['image'] }}" style="border-radius: 5px; border: 3px solid #FFFACD;"></a>
+                        <img src="{{ user['image'] }}" style="border-radius: 5px; border: 3px solid #FFFACD;">
                     </div>
                     <div id="intro" class="pure-u-2-5" style="font-weight: bold;font-size: 12px; min-width: 290px;">
-                        <div class="pure-u-1-3" style="color:#444444; min-width: 180px;">
+                        <div class="pure-u-1-3" style="color:#444444; margin-top:3px;min-width: 180px;">
                             <label style="float: right;margin-right: 10px;">昵称</label><br>
                             <label style="float: right;margin-right: 10px;">我的电子邮箱</label><br>
                             <label style="float: right;margin-right: 10px;">已经分享的模型数目</label>
@@ -94,23 +96,18 @@
                             <span>0</span>
                         </div>
                     </div>
-
-                    <div class="pure-u-2-5" id="button" style="margin-bottom: 20px;">
-                        <a href="/chooseWhich" class="pure-button pure-button-primary" style="background: #33CCFF;">分享作品</a>
-                        <a href="/changeprofile" class="pure-button pure-button-primary">修改我的资料</a>
-                    </div>
                 </div>
                 <div>
                     <h4>个人介绍</h4>
-                    <p>{% if not user['description'] %}还没有填写个人介绍哦○(・x・){% else %}{{ user['description'] }}{% end %}</p>
+                    <p>{% if not user['description'] %}还没有填写个人介绍哦 ∩( ・ω・)∩{% else %}{{ user['description'] }}{% end %}</p>
                 </div>
             </div>
 		</section>
         <div id="shared">
             {% if not sharing %}
-            <div style="color:#333; min-width: 400px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ uid }}还没有分享的作品哦 (｡･ω･｡)</h3></div>
+            <div style="color:#333; min-width: 400px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ user['id'] }} 还没有分享的作品哦 (｡･ω･｡)</h3></div>
             {% else %}
-                <div style="color:#333; min-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ uid }}分享的作品 (｡+･`ω･`)</h3></div>
+                <div style="color:#333;min-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><h3>{{ user['id'] }} 分享的作品 ヽ(｡ゝω・｡)ﾉ</h3></div>
                 {% for s in sharing %}
                 <div class="work" style="max-width: 290px;">
                     <a href="/viewDetail/{{ s['fid'] }}">

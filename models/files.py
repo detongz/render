@@ -59,6 +59,7 @@ def getUploadType(fid):
 
 
 def removeSharedRecord(fid):
+    # 删除分享
     sql = '''
         delete upload,file from upload,file
         where file.fid=upload.fid and upload.fid='%s';''' % fid

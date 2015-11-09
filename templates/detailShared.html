@@ -56,7 +56,9 @@
 			<div class="content" style="max-width: 5000px;">
                 <img style="box-shadow:10px 8px 28px #999999;  border-top:60px solid #FFFFF0; border-right:20px solid #FFFFF0;border-left: 20px solid #FFFFF0; border-bottom: 100px solid #FFFFF0; border-radius: 5px;" src="{{ info['preview'] }}">
                 <div class="pure-g" style="margin-top: 20px;">
-                    <div class="pure-u-1-8"><a href="/user/{{ info['id'] }}"><img src="{{ info['uImage'] }}" style=" margin-top: 10px; max-width: 40px; border-radius: 3px;"></a></div>
+                    {% import base64 %}
+                    {% import sys %}
+                    <div class="pure-u-1-8"><a href="/user/{{ base64.encodestring(info['id']) }}"><img src="{{ info['uImage'] }}" style=" margin-top: 10px; max-width: 40px; border-radius: 3px;"></a></div>
                     <div class="pure-u-1-2" style="min-width: 300px;">
                         <div class="pure-u-1-8" style="min-width: 50px;">
                             <span style="font-weight: lighter; font-size: 0.8em;">作者</span><br>

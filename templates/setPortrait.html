@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<title>注册 - 3DRender</title>
+	<title>设置头像 - 3DRender</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
@@ -12,30 +12,36 @@
     <script type="text/javascript" src="/static/js/signup.js"></script>
     <script>
         $(document).ready(function(){
-            $('#login').attr('class','selected');
+            $('#share').attr('class','selected');
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
-                    $('textarea').css('width','100%');
                     $('.pure-button').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
-                    $('textarea').css('width','67%');
-                    $('.pure-button').css('width','67%');
+                    $('.pure-button').css('width','30%');
                 }
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
-                    $('textarea').css('width','100%');
                     $('.pure-button').css('width','100%');
                 }
                 else{
                     $('input').css('width','67%');
-                    $('textarea').css('width','67%');
-                    $('.pure-button').css('width','67%');
+                    $('.pure-button').css('width','30%');
                 }
+            });
+
+            $('#submiting').click(function(){
+                $('#submit').trigger('click');
+            });
+            $('#choosefile').click(function(){
+                $('#file').trigger('click');
+            });
+            $('#file').change(function(){
+                $('#fname').text($('#file').val());
             });
         })
     </script>
@@ -53,30 +59,27 @@
 
 		<section class="top">
 			<div class="wrapper content_header clearfix">
-				<h1 class="title">新用户注册<label style="float: right;margin-left: 20px;">Sign Up</label></h1>
+				<h1 class="title">设置个人头像<label style="float: right;margin-left: 20px;">Set my portrait</label></h1>
 			</div>
 		</section><!-- end top -->
 
 		<section class="wrapper">
-			<div class="content form-signin">
+			<div class="content form-signin" style="margin-top:80px;max-width: 5000px;">
                 <div class="pure-form pure-form-stacked">
-                    <label for="name">昵称</label>
-                    <input type="text" id="name" placeholder="请输入昵称" autofocus>
-                    <label for="password" style="margin-top: 1em;">登陆密码</label>
-                    <input type="password" id="password" placeholder="请输入密码" >
-                    <label for="cpassword" style="margin-top: 1em;">确认密码</label>
-                    <input type="password" id="cpassword" placeholder="请再次输入密码" >
-                    <label for="email" style="margin-top: 1em;">用户邮箱</label>
-                    <input type="email" id="email" placeholder="请输入邮箱哦" >
-                    <label for="description" style="margin-top: 2em;">个人介绍</label>
-                    <textarea id="description" name="description" rows="10" style="resize: none;" placeholder="请填写个人简介"></textarea>
-                    <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
-                        <button class="pure-button pure-button-primary" style="background: rgb(66, 184, 221);" id="submiting">注册</button>
-                    </div>
+                    <form action="" enctype="multipart/form-data" method="post">
+                        <label for="file">选择用作头像的图片吧～</label>
+                        <input type="file" name="sharefile" id="file" style="opacity: 0;z-index: 1;width: 100%;" accept="image/*" hidden required/>
+                        <button class="pure-button pure-button-primary" style="z-index:-1; background: #7EC0EE;" id="choosefile">请选择头像要用的图片吧</button><span id="fname" style="margin:10px;"></span>
+                        <label style="font-size: 12px;">选择长度和宽度接近的图片会更好哦 &nbsp;( ･ิω･ิ)</label>
+                        <input type="submit" id="submit" style="display: none;">
+                        <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
+                            <button class="pure-button pure-button-primary" style="background:#EE7600;" id="submiting">确认上传</button>
+                        </div>
+                    </form>
                 </div>
 			</div><!-- end content -->
 		</section>
 	</section><!-- end main -->
-	
+
 </body>
 </html>

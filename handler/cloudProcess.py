@@ -4,6 +4,9 @@ from handler.request import Request
 
 class cloudProcess(Request):
     def post(self):
-        self.get_argument('vectors')
-        self.get_argument('precious')
-        self.get_argument('headtotail')
+        vectors = self.get_argument('vectors')
+        precious = self.get_argument('precious')
+        headtotail = self.get_argument('headtotail')
+        print vectors
+        print precious
+        print headtotail

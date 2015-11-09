@@ -43,9 +43,19 @@ def getUserById(id):
         return r[0]
 
 
-def signUp(id, pwd, email):
+def signUp(id, pwd, email, desc):
     # 新用户注册
-    sql = '''insert into user (id,password,email) values ('%s','%s','%s');''' % (id, pwd, email)
+    if desc != '':
+        sql = '''insert into user (id,password,email,description) values ('%s','%s','%s','%s');''' % (
+        id, pwd, email, desc)
+    else:
+        sql = '''insert into user (id,password,email) values ('%s','%s','%s');''' % (id, pwd, email)
+    db.execute(sql)
+
+
+def userSetPortrait(path, id):
+    # 用户设置/更新头像
+    sql = "update user set image='%s' where id='%s';" % (path, id)
     db.execute(sql)
 
 
