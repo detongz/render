@@ -4,6 +4,7 @@ from handler.login import signupHandler, loginHandler, logOutHandler, changePers
 from handler.error import errorHandler, errorHandler404
 from handler.share import shareHandler,chooseWhichHandler,sharePictureHandler
 from handler.sharingDetail import sharingDetailHandler, shareDeleteHandler
+from handler.cloudProcess import cloudProcess
 
 urls = [
     (r'/', indexHandler),  # 首页/查看全部作品
@@ -18,6 +19,7 @@ urls = [
     (r'/share', shareHandler),  # 用户模型分享
     (r'/changeprofile', changePersonalProfileHandler),  # 用户修改个人信息部分，未实现
     (r'/viewDetail/(.*)', sharingDetailHandler),  # 查看分享详细内容，未实现
+    (r'/cloudProcess/', cloudProcess),  # 查看分享详细内容，未实现
 
     # 处理错误
     (r'/error/(.*)/(.*)', errorHandler),  # 各类报错信息， 参数2为需要标记选择的部分
