@@ -63,10 +63,10 @@
     </script>
     <style>
          .desc{
-            max-height: 80px;
-            overflow: hidden;font-size: 0.65em;margin-top: 3px;font-weight: lighter;}
+            max-height: 60px;
+            overflow: hidden;font-size: 0.6em;margin-top: 3px;font-weight: lighter;}
          h1 span{font-size: 0.8em; font-weight: lighter; overflow:hidden; height:15px;}
-         h1 p{font-size: 0.65em; font-weight: lighter;color:#333; overflow:hidden; }
+         h1 p.title{font-size: 0.65em; font-weight: lighter;color:#333; overflow:hidden; }
     </style>
 </head>
 <body>
@@ -109,14 +109,14 @@
                 <aside style="color:#333; width: 33%;max-width: 260px;margin-bottom: 20px; background: #fff; border-bottom: 3px solid #FFFACD;"><p>{{ uid }}分享的作品 (｡･ω･｡)</p></aside>
                 {% for s in sharing %}
                 <div class="work" style="max-width: 290px;">
-                    <a href="inner.html">
+                    <a href="/viewDetail/{{ s['fid'] }}">
                         <img src="{{ s['preview'] }}" class="media" style="max-width: 290px;" alt=""/>
                         <div class="caption">
                             <div class="work_title" style="top: 25%;">
                                 <h1>
-                                    <p>作品名称</p><span>{{ s['fname'] }}</span><br><br>
-                                    <p>上传时间</p><span>{{ s['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span><br><br>
-                                    <p>作品描述</p><div class="desc">{{ s['description'] }}</div>
+                                    <p class="title">作品名称</p><span>{{ s['fname'] }}</span><br><br>
+                                    <p class="title">上传时间</p><span>{{ s['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span><br><br>
+                                    <p class="title">作品描述</p><div class="desc">{{ s['description'] }}</div>
                                 </h1>
                             </div>
                         </div>

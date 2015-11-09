@@ -44,8 +44,9 @@ def getSharedModelsById(id):
 
 
 def getCertainFile(fid):
+    # 获取某个分享的文件的作者和文件的相关信息
     sql = '''
-        select f.fid,f.fname,f.description as fdes,f.preview,f.date,us.description as udes,us.image as uImage
+        select f.fid,f.fname,f.description as fdes,f.preview,f.date,f.type,us.description as udes,us.id,us.image as uImage
         from file as f,upload as u ,user as us
         where f.fid=u.fid and u.fid='%s' and us.id=u.id;''' % fid
     return db.get(sql)

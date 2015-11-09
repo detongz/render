@@ -34,6 +34,6 @@ def text2Html(content):
     content = escape(content)
     lines = content.split('\n')
     for i, line in enumerate(lines):
-        lines[i] = '<p>' + line + '</p><br>'
+        lines[i] = '<p>' + line + '</p>'
     content = ''.join(lines)
     return content

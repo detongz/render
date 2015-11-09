@@ -8,10 +8,10 @@ from handler.sharingDetail import sharingDetailHandler
 urls = [
     (r'/', indexHandler),  # 首页/查看全部作品
     (r'/login', loginHandler),  # 登陆界面
-    (r'/logout', logOutHandler),  # 登陆界面
+    (r'/logout', logOutHandler),  # 注销
     (r'/signup', signupHandler),  # 申请新用户界面
     (r'/user', userIndexHandler),  # 用户界面首页
-    (r'/user/(.*)', viewCertainUserHandler),  # 用户界面首页
+    (r'/user/(.*)', viewCertainUserHandler),  # 查看其他用户子资料 未实现！
     (r'/chooseWhich', chooseWhichHandler),  # 用户选择要分享的模型类型
     (r'/sharePic', sharePictureHandler),  # 用户分享单张图片
     (r'/share', shareHandler),  # 用户模型分享

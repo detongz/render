@@ -1,0 +1,54 @@
+{% autoescape None %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>{{ info['fname'] }}-查看作品-3DRender</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/pure.min.css">
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script type="text/javascript" src="/static/js/signup.js"></script>
+</head>
+<body>
+
+	{% include header.html %}
+
+	<section class="main clearfix">
+
+		<section class="top">
+			<div class="wrapper content_header clearfix">
+				<h1 class="title">
+                    {{ info['fname'] }}<label style="margin-left: 50px; font-size: 0.6em;">作者{{ info['id'] }}</label>
+                </h1>
+			</div>
+		</section><!-- end top -->
+
+		<section class="wrapper" style="margin-top:-40px;">
+			<div class="content" style="max-width: 5000px;">
+                <img style="box-shadow:10px 4px 20px #999999;  border-top:60px solid #FFFFF0; border-right:20px solid #FFFFF0;border-left: 20px solid #FFFFF0; border-bottom: 100px solid #FFFFF0; border-radius: 5px;" src="{{ info['preview'] }}">
+                <div class="pure-g" style="margin-top: 20px;">
+                    <div class="pure-u-1-8"><a href="/作者详情"><img src="{{ info['uImage'] }}" style="max-width: 40px; border-radius: 3px;"></a></div>
+                    <div class="pure-u-1-2" style="min-width: 300px;">
+                        <div class="pure-u-1-8" style="min-width: 50px;">
+                            <span style="font-weight: lighter; font-size: 0.8em;">作者</span><br>
+                            <span style="font-weight: lighter; font-size: 0.8em;">上传时间</span>
+                        </div>
+                        <div class="pure-u-1-3" style="min-width: 230px;">
+                            <span style="font-weight: bold; font-size: 0.9em; margin-left: 20px;">{{ info['id'] }}</span><br>
+                            <span style="font-weight: bold; font-size: 0.9em; margin-left: 20px;">{{ info['date'].strftime('%Y-%m-%d  %H:%M:%S') }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <h3>作品介绍</h3>
+                    {{ info['fdes'] }}
+                </div>
+            </div><!-- end content -->
+		</section>
+	</section><!-- end main -->
+
+</body>
+</html>
