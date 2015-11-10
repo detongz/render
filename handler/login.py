@@ -3,7 +3,7 @@ from _mysql import IntegrityError
 
 from handler.request import Request
 from tornado.escape import json_encode
-from handleInput import qn, qndes, text2Html
+from handleInput import qn, qndes, text2Html, html2Text
 from models.query import getUser, getUserById, signUp, userSetPortrait
 import re
 
@@ -96,7 +96,7 @@ class changePersonalProfileHandler(Request):
             self.redirect('/')
         else:
             user = getUserById(self.id)
-            self.render('changeProfile.html', uid=self.id, user=user)
+            self.render('changeProfile.html', uid=self.id, user=user, descrip=html2Text(user['description']))
 
     def post(self, *args, **kwargs):
         email = self.get_argument('email')
@@ -104,5 +104,12 @@ class changePersonalProfileHandler(Request):
         if not getUserById(self.id):
             self.redirect('/error/no_such_user')
         else:
-            userSetPortrait(email, description, self.id)
-            self.redirect('/user')
+            try:
+                description = qndes(description)
+                description = text2Html(description)  # 保存换行信息
+                email = qn(email)
+
+                userSetPortrait(email, description, self.id)
+                self.redirect('/user')
+            except TypeError:
+                self.redirect('/error/special_marks/share')

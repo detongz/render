@@ -1,3 +1,4 @@
+{% autoescape None %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -29,7 +30,7 @@
                     $('.pure-button').css('width','67%');
                 }
                 $('#email').val('{{ user['email'] }}');
-                {% if user['description'] is not None %}$('#description').val('{{ user['description'] }}');{% end %}
+                {% if descrip is not None %}$('#description').val('{{ descrip }}');{% end %}
             });
             $(window).resize(function(){
                 if($('#menu_icon').css('display')=='block'){

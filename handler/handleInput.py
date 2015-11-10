@@ -37,3 +37,22 @@ def text2Html(content):
         lines[i] = '<p>' + line + '</p>'
     content = ''.join(lines)
     return content
+
+
+def html2Text(content):
+    def escape(txt):
+        """将数据库中存贮的html文本取出，还原为用户输入版本"""
+        txt = txt.replace('&#38;', '&')
+        txt = txt.replace('&#160;', ' ')
+        txt = txt.replace('&#60;', '<')
+        txt = txt.replace('&#62;', '>')
+        txt = txt.replace('&#34;', '"')
+        txt = txt.replace('&#39;', '\'')
+        return txt
+
+    content = escape(content)
+    lines = content.split('</p>')
+    for i, line in enumerate(lines):
+        lines[i] = line.strip('<p>').strip('</p>').strip('<br>')+'\n'
+    content = ''.join(lines)
+    return content.strip('\n')

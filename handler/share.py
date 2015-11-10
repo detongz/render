@@ -144,9 +144,9 @@ class sharePictureHandler(Request):
                         self.redirect('/error/no_such_user/share')
                     else:
                         try:
+                            description = qndes(description)
                             description = text2Html(description)  # 保存换行信息
                             picname = qndes(picname)
-
 
                             # 生成文件id
                             (fid, time) = generateFId()
