@@ -47,7 +47,7 @@ def signUp(id, pwd, email, desc):
     # 新用户注册
     if desc != '':
         sql = '''insert into user (id,password,email,description) values ('%s','%s','%s','%s');''' % (
-        id, pwd, email, desc)
+            id, pwd, email, desc)
     else:
         sql = '''insert into user (id,password,email) values ('%s','%s','%s');''' % (id, pwd, email)
     db.execute(sql)
@@ -56,6 +56,12 @@ def signUp(id, pwd, email, desc):
 def userSetPortrait(path, id):
     # 用户设置/更新头像
     sql = "update user set image='%s' where id='%s';" % (path, id)
+    db.execute(sql)
+
+
+def userSetPortrait(email, description, id):
+    # 用户设置/更新个人信息
+    sql = "update user set email='%s',description='%s' where id='%s';" % (email, description, id)
     db.execute(sql)
 
 

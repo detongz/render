@@ -4,7 +4,7 @@ from _mysql import IntegrityError
 from handler.request import Request
 from tornado.escape import json_encode
 from handleInput import qn, qndes, text2Html
-from models.query import getUser, getUserById, signUp
+from models.query import getUser, getUserById, signUp, userSetPortrait
 import re
 
 
@@ -88,13 +88,21 @@ class signupHandler(Request):
 class changePersonalProfileHandler(Request):
     """用户修改个人信息"""
 
+    def prepare(self):
+        self.id = self.get_secure_cookie('id')
+
     def get(self, *args, **kwargs):
-        id = self.get_secure_cookie('id')
-        if not id:
+        if not self.id:
             self.redirect('/')
         else:
-            user = getUserById(id)
-            self.render('changeProfile.html', uid=id, user=user)
+            user = getUserById(self.id)
+            self.render('changeProfile.html', uid=self.id, user=user)
 
     def post(self, *args, **kwargs):
-        pass
+        email = self.get_argument('email')
+        description = self.get_argument('description')
+        if not getUserById(self.id):
+            self.redirect('/error/no_such_user')
+        else:
+            userSetPortrait(email, description, self.id)
+            self.redirect('/user')

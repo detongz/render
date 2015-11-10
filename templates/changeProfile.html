@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/main.js"></script>
-    <script type="text/javascript" src="/static/js/signup.js"></script>
     <script>
         $(document).ready(function(){
             $('#login').attr('class','selected');
+
+            $('#submiting').click(function(){
+                $('#submit').trigger('click');
+            });
+
             $(window).load(function(){
                 if($('#menu_icon').css('display')=='block'){
                     $('input').css('width','100%');
@@ -61,15 +65,18 @@
 		<section class="wrapper">
 			<div class="content form-signin">
                 <div class="pure-form pure-form-stacked">
-                    <label for="name">昵称</label>
-                    <input type="text" id="name" placeholder="{{ user['id'] }}" autofocus disabled>
-                    <label for="email" style="margin-top: 1em;">用户邮箱</label>
-                    <input type="email" id="email" >
-                    <label for="description" style="margin-top: 1em;">个人介绍</label>
-                    <textarea id="description" name="description" rows="10" style="resize: none;" placeholder="请填写个人简介"></textarea>
-                    <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
-                        <button class="pure-button pure-button-primary" id="submiting">提交</button>
-                    </div>
+                    <form method="post">
+                        <label for="name">昵称</label>
+                        <input type="text" id="name" value="{{ user['id'] }}" autofocus disabled>
+                        <label for="email" style="margin-top: 1em;">用户邮箱</label>
+                        <input type="email" name="email" id="email" />
+                        <label for="description" style="margin-top: 1em;">个人介绍</label>
+                        <textarea id="description" name="description" rows="10" style="resize: none;" placeholder="请填写个人简介"></textarea>
+                        <input type="submit" id="submit" style="display: none;">
+                        <div style="margin-top: 30px;" class="pure-form pure-form-stacked">
+                            <button class="pure-button pure-button-primary" id="submiting">提交</button>
+                        </div>
+                    </form>
                 </div>
 			</div><!-- end content -->
 		</section>
