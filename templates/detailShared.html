@@ -28,6 +28,8 @@
             $('aside').css('margin-left',$('#delete').offset().left-300);
         });
         $('#cancel').click(function(){
+            $('#confirm').css('height',document.body.scrollHeight);
+            $('#confirm').css('width',document.body.scrollWidth);
             $('#confirm').css('display','none');
             $('aside').css('display','none');
         });
