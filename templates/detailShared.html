@@ -82,7 +82,18 @@
                     <h3>作品介绍</h3>
                     {% if not info['fdes'] %}作者没有写评论哦(๑¯ω¯๑) {% else %}{{ info['fdes'] }}{% end %}
                 </div>
-
+                <div class="pure-u-1">
+                    <h3><br></h3>
+                    <h3>作品下载</h3>
+                    {% if info['type']=='mod' %}
+                    <div class="pure-u-1-4" style="margin-right: 10px;min-width: 150px; max-width: 200px;">
+                        <a href="/download/{{ info['fid'] }}" class="pure-button pure-button-primary" style="background-color: lightseagreen;width: 100%;">模型文件下载</a>
+                    </div>
+                    {% end %}
+                    <div class="pure-u-1-4" style="min-width: 150px;max-width: 200px;">
+                        <a href="/downloadPic/{{ info['fid'] }}" class="pure-button pure-button-primary" style="background-color:lightsalmon; width: 100%;">图片文件下载</a>
+                    </div>
+                </div>
             </div><!-- end content -->
 		</section>
 	</section><!-- end main -->

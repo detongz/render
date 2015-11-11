@@ -87,13 +87,15 @@ def unzip(path, fname, id):
             mkdir /tmp/share
         fi
         cd /tmp/share
+        cp %s %s
         mkdir temp-%s
         unzip %s -d temp-%s
         rm %s
         mv temp-%s/*.png %s/%s.png
-        mv temp-%s/*.unimax %s.unimax
+        # mv temp-%s/*.unimax %s.unimax
         ''' \
-          % (path, id, path + fname, id, path + fname, id, path, id, id, id)
+          % (path, path + fname, id+'.zunimax', id, path + fname, id, path + fname, id, path, id, id, id)
+    print cmd
     os.system(cmd)
     cmd = 'find /tmp/share/temp-' + id + ' -name "*.txt"'
     txt = commands.getstatusoutput(cmd)[1]
