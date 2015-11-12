@@ -26,7 +26,7 @@ class setPortraitHandler(Request):
                 self.redirect('/login')
             else:
                 if ext not in ['jpg', 'jpeg', 'png', 'gif', 'JPEG', 'tiff', 'tif', 'raw']:
-                    self.redirect('/error/shareModelError/')
+                    self.redirect('/error/sharePicError/')
                 else:
 
                     if not getUserById(self.id):

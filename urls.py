@@ -2,10 +2,10 @@
 from handler.index import indexHandler, userIndexHandler, viewCertainUserHandler
 from handler.login import signupHandler, loginHandler, logOutHandler, changePersonalProfileHandler
 from handler.error import errorHandler, errorHandler404
-from handler.share import shareHandler,chooseWhichHandler,sharePictureHandler
+from handler.share import shareHandler, chooseWhichHandler, sharePictureHandler
 from handler.sharingDetail import sharingDetailHandler, shareDeleteHandler
 from handler.setPortrait import setPortraitHandler
-from handler.download import downloadHandler,downloadPicHandler
+from handler.download import downloadHandler, downloadPicHandler
 from handler.cloudProcess import cloudProcess
 
 urls = [
@@ -23,8 +23,8 @@ urls = [
     (r'/changeprofile', changePersonalProfileHandler),  # 用户修改个人信息部分
     (r'/viewDetail/(.*)', sharingDetailHandler),  # 查看分享详细内容
     (r'/cloudProcess/', cloudProcess),  # 查看分享详细内容，未实现
-    (r'/download/(.*)',downloadHandler),  # 下载文件
-    (r'/downloadPic/(.*)',downloadPicHandler),  # 下载图片
+    (r'/download/(.*)', downloadHandler),  # 下载文件
+    (r'/downloadPic/(.*)', downloadPicHandler),  # 下载图片
 
     # 处理错误
     (r'/error/(.*)/(.*)', errorHandler),  # 各类报错信息， 参数2为需要标记选择的部分

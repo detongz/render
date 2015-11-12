@@ -25,6 +25,7 @@ def setUserDescription(id, description):
 def getUser(id, pwd):
     # 用户登录
     sql = '''select * from user where id="%s" and password="%s";''' % (id, pwd)
+    print sql
     r = db.query(sql)
     if not r:
         return None
@@ -59,9 +60,9 @@ def userSetPortrait(path, id):
     db.execute(sql)
 
 
-def userSetPortrait(email, description, id):
+def userSetPortrait(description, id):
     # 用户设置/更新个人信息
-    sql = "update user set email='%s',description='%s' where id='%s';" % (email, description, id)
+    sql = "update user set description='%s' where id='%s';" % (description, id)
     db.execute(sql)
 
 

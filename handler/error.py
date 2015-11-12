@@ -11,7 +11,7 @@ error_info = {
     'email_existed': '这个邮箱已经被注册过了(⊙o⊙)',
     'plsease_login': '要登陆才可以用的哦(●\'◡\'●)ﾉ♥',
     'shareModelError': '请上传使用3Drender导出的模型哦(●\'◡\'●)ﾉ♥',
-    'sharePicError': '请上传单张图片哦(●\'◡\'●)ﾉ♥',
+    'sharePicError': '请上传单张图片文件哦(●\'◡\'●)ﾉ♥',
     'file_error': '分享出问题啦 再试试吧(￣▽￣)~\*',
     'please_select_file': '上传要选择文件哦 ╮(๑•́ ₃•̀๑)╭',
 }

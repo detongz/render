@@ -139,7 +139,7 @@ class sharePictureHandler(Request):
                 self.redirect('/login')
             else:
                 if ext not in ['jpg', 'jpeg', 'png', 'gif', 'JPEG', 'tiff', 'tif', 'raw']:
-                    self.redirect('/error/shareModelError/share')
+                    self.redirect('/error/sharePicError/share')
                 else:
 
                     if not getUserById(id):
