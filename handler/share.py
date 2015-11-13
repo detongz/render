@@ -45,22 +45,27 @@ class shareHandler(Request):
                     self.redirect('/error/shareModelError/share')
                 else:
 
-                    # 保存文件
-                    path = os.path.dirname(__file__)[:-8] + '/static/imgshare'
-                    fpath = path + fname
-                    fi = open(fpath, 'w')
-                    fi.write(f)
-                    fi.close()
+                    try:
+                        # 保存文件
+                        path = os.path.dirname(__file__)[:-8] + '/static/imgshare'
+                        fpath = path + fname
+                        fi = open(fpath, 'w')
+                        fi.write(f)
+                        fi.close()
 
-                    # 解压并处理文件
-                    (naming, description) = unzip(path, fname, fid)
+                        # 解压并处理文件
+                        (naming, description) = unzip(path, fname, fid)
 
-                    # 增加分享的文件记录
-                    shareFile(fid, naming, description, '/static/imgshare/' + fid + '.png', time, id)
+                        # 增加分享的文件记录
+                        shareFile(fid, naming, description, '/static/imgshare/' + fid + '.png', time, id)
 
-                    if platform == '0':
-                        self.redirect('/')
-                    elif platform == '1':
+                        if platform == '0':
+                            self.redirect('/')
+                        elif platform == '1':
+                            pass
+                    except:
+                        pass
+                    finally:
                         self.write(json_encode({'result': 'success'}))
 
 
@@ -95,7 +100,6 @@ def unzip(path, fname, id):
         # mv temp-%s/*.unimax %s.unimax
         ''' \
           % (path, path + fname, id+'.zunimax', id, path + fname, id, path + fname, id, path, id, id, id)
-    print cmd
     os.system(cmd)
     cmd = 'find /tmp/share/temp-' + id + ' -name "*.txt"'
     txt = commands.getstatusoutput(cmd)[1]
