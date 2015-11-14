@@ -9,11 +9,13 @@ namespace BzPoints
 	class Program
 	{
 		static TcpListener listener;
-		static int port;
+		static int port=45888;
 		static IPAddress ip;
 		static void Main()
 		{
+			ip=IPAddress.Parse("192.168.0.16");
 			listener = new TcpListener(ip,port);
+			listener.Start();
 			while(true)
 			{
 				TcpClient client=listener.AcceptTcpClient();
